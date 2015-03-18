@@ -8,6 +8,7 @@
 <dc:source>http://www.lightnovel.cn</dc:source>
 <dc:description>由https://github.com/bebound/lknovel/生成
 {descriptions}</dc:description>
+<dc:publisher>{publisher_name}</dc:publisher>
 <meta content="{cover_name}" name="cover" />
 </metadata>
 <manifest>

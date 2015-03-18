@@ -39,6 +39,7 @@ class Novel():
         self.volume_number = ''
         self.author = ''
         self.illustrator = ''
+        self.publisher_name = ''
         self.introduction = ''
         self.cover_url = ''
         self.chapters_links = []
@@ -96,6 +97,12 @@ class Novel():
         self.illustrator = find_illustrator_name.search(str(temp_author_name[5])).group(1)
         self.print_info('Author:' + self.author + '\nillustrator:' + self.illustrator)
 
+    def find_publisher_name(self, soup):
+        temp_publisher_name = soup.select('table.lk-book-detail td')
+        find_publisher_name = re.compile(r'<td>(.*)</td>')
+        self.publisher_name = find_publisher_name.search(str(temp_publisher_name[7])).group(1)
+        self.print_info('Publisher:' + self.publisher_name)
+
     def find_introduction(self, soup):
         temp_introduction = soup.select(
             'html body div.content div.container div.row-fluid div.span9 div.well div.row-fluid div.span10 p')
@@ -122,6 +129,7 @@ class Novel():
 
         self.find_volume_name_number(soup)
         self.find_author_illustrator(soup)
+        self.find_publisher_name(soup)
         self.find_introduction(soup)
         self.find_cover_url(soup)
         self.chapters_links = self.find_chapter_links(soup)
@@ -233,4 +241,4 @@ class Novel():
     def novel_information(self):
         return {'chapter': self.chapters, 'volume_name': self.volume_name, 'volume_number': self.volume_number,
                 'book_name': self.book_name, 'author': self.author,
-                'illustrator': self.illustrator, 'introduction': self.introduction, 'cover_url': self.cover_url}
+                'illustrator': self.illustrator, 'introduction': self.introduction, 'publisher_name': self.publisher_name, 'cover_url': self.cover_url}

@@ -25,19 +25,20 @@ class Epub():
     deal with epub
 
     Attributes:
-        volume_name: A string represent the volume name
-        volume_number: A string represent the volume number
-        volume_author: A string represent the author
-        volume_illustrator: A string represent the illustrator
-        volume_introduction: A string represent the introduction
-        volume_cover_url: A string represent the cover_url
-        chapter_links: A string represent the chapter links
-        output_dir: A stirng represent the epub save path
-        cover_path: A string represent the cover path
-        book_namer: A string represent the book name
-        uuid: A string represent the book uuid
-        chapter: A list represent the chapter
-        base_path: A string represent the epub temp path
+        volume_name: A string represents the volume name
+        volume_number: A string represents the volume number
+        volume_author: A string represents the author
+        volume_illustrator: A string represents the illustrator
+        volume_introduction: A string represents the introduction
+        volume_cover_url: A string represents the cover_url
+        chapter_links: A string represents the chapter links
+        output_dir: A stirng represents the epub save path
+        cover_path: A string represents the cover path
+        book_name: A string represents the book name
+        publisher_name: A string represents the book publisher
+        uuid: A string represents the book uuid
+        chapter: A list represents the chapter
+        base_path: A string represents the epub temp path
 
     """
 
@@ -53,6 +54,7 @@ class Epub():
         self.volume_number = kwargs['volume_number']
         self.author = kwargs['author']
         self.illustrator = kwargs['illustrator']
+        self.publisher_name = kwargs['publisher_name']
         self.introduction = kwargs['introduction']
         self.cover_url = kwargs['cover_url']
         self.book_name = kwargs['book_name']
@@ -239,7 +241,7 @@ class Epub():
                                                          cover_name=cover_name,
                                                          author=self.author, file_paths='\n'.join(file_paths),
                                                          chapter_orders='\n'.join(chapter_orders),
-                                                         descriptions=self.introduction)
+                                                         descriptions=self.introduction, publisher_name=self.publisher_name)
         return final_content_opf_html
 
     def create_toc_html(self):
