@@ -238,7 +238,8 @@ class Epub():
         final_content_opf_html = content_opf_html.format(book_name=self.book_name, uuid=self.uuid,
                                                          cover_name=cover_name,
                                                          author=self.author, file_paths='\n'.join(file_paths),
-                                                         chapter_orders='\n'.join(chapter_orders))
+                                                         chapter_orders='\n'.join(chapter_orders),
+                                                         descriptions=self.introduction)
         return final_content_opf_html
 
     def create_toc_html(self):
