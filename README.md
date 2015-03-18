@@ -53,10 +53,12 @@ Generate epub from http://lknovel.lightnovel.cn/
 
 
 
-3. Sava path: Default is desktop
+3. Save path: Default is desktop
 
 ![GUIVersion截图](https://raw.github.com/bebound/lknovel/master/screenShot/3.png)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bebound/lknovel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+###url generation mod 0.2
+This mod can generate urls in a range then start to download and put all epubs into "novels" folder. Better run this program in python shell rather than windows cmd which has poor support for unicode characters.

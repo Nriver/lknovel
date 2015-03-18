@@ -81,7 +81,7 @@ def grab_volume(url, output_dir, cover_path):
         cover_file: A string represent the path of the EPUB cover
     """
     try:
-        print_info('Getting:' + url)
+        print_info('\nGetting:' + url)
         novel = Novel(url=url, single_thread=SINGLE_THREAD)
         novel.get_novel_information()
         epub = Epub(output_dir=output_dir, cover_path=cover_path, **novel.novel_information())
@@ -146,6 +146,18 @@ def start(urls, output_dir=None, cover_path=None):
             print('请输入正确的网址，例如：\nhttp://lknovel.lightnovel.cn/main/vollist/492.html'
                   '\nhttp://lknovel.lightnovel.cn/main/book/1578.html')
 
+def generate_urls(book_type, index_s, index_e):
+    url_gen = []
+    if book_type == 'v':
+        url_gen_prefix = 'http://lknovel.lightnovel.cn/main/vollist/'
+    else:
+        url_gen_prefix = 'http://lknovel.lightnovel.cn/main/book/'
+    index_s = int(index_s)
+    index_e = int(index_e)
+    for i in range(index_s, index_e+1):
+        url_gen.append(url_gen_prefix + str(i) + '.html') 
+    return url_gen
+
 
 def main():
     global SINGLE_THREAD
@@ -155,15 +167,20 @@ def main():
         output_dir = None if not arguments['--output'] else arguments['--output'][0]
         cover_path = None if not arguments['--cover'] else arguments['--cover'][0]
     else:
-        urls = input('Please input urls（separate with space）:').split()
+        print('Url Generator mod for lknovel v0.2\n')
+        book_type = input('input book type(b/v)\n')
+        index_s = input('start index\n')
+        index_e = input('end index\n')
+        urls = generate_urls(book_type, index_s, index_e)
+        
         if is_single_thread():
             SINGLE_THREAD = True
-        output_dir = None
+        output_dir = './novels'
         cover_path = None
 
     start(urls, output_dir, cover_path)
 
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__, version='Lknovel 1.0')
+    arguments = docopt(__doc__, version='Lknovel 1.0 + urlgenmod 0.2')
     sys.exit(main())
