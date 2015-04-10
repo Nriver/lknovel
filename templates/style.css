@@ -103,7 +103,6 @@ li.c-rules {
 
 .entry {
     padding: 3px;
-    background: none repeat scroll 0 0 #EEE;
     border-radius: 3px;
 }
 
@@ -117,11 +116,9 @@ li.c-rules {
     border: 1px solid #d8d8d8;
     border-radius: 3px 3px 0 0;
     border-bottom: 0 none;
-    background-color: #f5f5f5;
 }
 
 .entry-content {
-    background-color: #fff;
     border: 1px solid #CACACA;
     padding: 20px;
 }
